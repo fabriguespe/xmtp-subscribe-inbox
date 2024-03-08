@@ -1,8 +1,8 @@
 # Subscribe Inbox with XMTP
 
-This guide will walk you through the creation of a consent management system. This system will allow users to control their consent preferences for your messages or notifications. By leveraging XMTP, this tutorial offers tools to build a consent management system that respects user preferences and protects their privacy.
+![xmtp](https://github.com/xmtp/xmtp-quickstart-reactjs/assets/1447073/3f2979ec-4d13-4c3d-bf20-deab3b2ffaa1)
 
-https://github.com/fabriguespe/xmtp-ppp-consent-management/assets/1447073/453ec1ac-b531-4c8f-87e4-c8919748d43a
+This guide will walk you through the creation of a consent management system. This system will allow users to control their consent preferences for your messages or notifications. By leveraging XMTP, this tutorial offers tools to build a consent management system that respects user preferences and protects their privacy.
 
 ## Considerations
 
