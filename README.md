@@ -1,26 +1,46 @@
-# XMTP Quickstart JS
+# Subscribe Inbox with XMTP
 
-![xmtp](https://github.com/xmtp/xmtp-quickstart-reactjs/assets/1447073/3f2979ec-4d13-4c3d-bf20-deab3b2ffaa1)
+This guide will walk you through the creation of a consent management system. This system will allow users to control their consent preferences for your messages or notifications. By leveraging XMTP, this tutorial offers tools to build a consent management system that respects user preferences and protects their privacy.
 
-## Installation
+https://github.com/fabriguespe/xmtp-ppp-consent-management/assets/1447073/453ec1ac-b531-4c8f-87e4-c8919748d43a
 
-```bash
-bun install
-bun start
-```
+## Considerations
 
-## Concepts
+Before diving into the code let's consider important aspects while integrating consent features. For example, before making an allow or block action you should synchronize the updated consent list in order to **prevent overwriting network** consent from another app. For more details head to these sections of our docs:
 
-Head to our docs to understand XMTP's concepts
+- [Understand user consent preferences](https://xmtp.org/docs/build/user-consent#understand-user-consent-preferences): This section provides a comprehensive understanding of how user consent preferences are set, including but not limited to, direct actions within the app, settings adjustments, and responses to prompts.
+- [Use consent preferences to respect user intent](https://xmtp.org/docs/build/user-consent#use-consent-preferences-to-respect-user-intent): Your app should aim to handle consent preferences appropriately because they are an expression of user intent.
+- [Synchronize user consent preferences](https://xmtp.org/docs/build/user-consent#synchronize-user-consent-preferences):All apps that use the user consent feature must adhere to the logic described in this section to keep the consent list on the network synchronized with local app user consent preferences, and vice versa.
 
-- [Get started](https://xmtp.org/docs/build/get-started/overview?sdk=js)
-- [Authentication](https://xmtp.org/docs/build/authentication?sdk=js)
-- [Conversations](https://xmtp.org/docs/build/conversations?sdk=js)
-- [Messages](https://xmtp.org/docs/build/messages/?sdk=js)
-- [Streams](https://xmtp.org/docs/build/streams/?sdk=js)
+## Tutorial
 
-#### Troubleshooting
+Please refer to the XMTP documentation for comprehensive information regarding the implementation.
 
-If you get into issues with `Buffer` and `polyfills` check out the fix below:
+- [Import libraries](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#import-libraries)
 
-- [Check out Buffer issue](https://github.com/xmtp/xmtp-js/issues/487)
+- [Connect the wallet](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#connect-the-wallet)
+
+- [Get consent List](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#get-consent-list)
+
+- [Render consent table](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#render-consent-table)
+
+- [Handle consent change](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#handle-consent-change)
+
+- [Download the consent list as a CSV file](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#download-the-consent-list-as-a-csv-file)
+
+- [Render the Component](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#render-the-component)
+
+## Caution :warning:
+
+**Always synchronize consent states:** Before updating consent preferences on the network, ensure you refresh the consent list with `refreshConsentList`. Update the network's consent list only in these scenarios:
+
+- **User Denies Contact:** Set to `denied` if a user blocks or unsubscribes.
+- **User Allows Contact:** Set to `allowed` if a user subscribes or enables notifications.
+- **Legacy Preferences:** Align the network with any existing local preferences.
+- **User Response:** Set to `allowed` if the user has engaged in conversation.
+
+Neglecting these guidelines can result in consent state conflicts and compromise user privacy.
+
+## Conclusion
+
+Consent has really evolved through the years. It started with email, then email marketing, and was the wild west until laws like GPDR stepped in. This is new chapter in the history of consent in a new era for privacy, portability, and ownership.
