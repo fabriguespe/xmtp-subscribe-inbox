@@ -70,6 +70,7 @@ export const SubscriptionsContainer = ({ client }) => {
       setLoading(true);
       try {
         const allConversations = await client.conversations.list();
+
         const filteredConversations = allConversations.filter(
           (conversation) =>
             conversation?.context?.conversationId === "notification_v1",
