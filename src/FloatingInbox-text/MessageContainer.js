@@ -82,11 +82,6 @@ export const MessageContainer = ({
       if (conversation && conversation.peerAddress) {
         setIsLoading(true);
         const initialMessages = await conversation?.messages();
-        console.log(
-          "initialMessages",
-          conversation.peerAddress,
-          initialMessages,
-        );
         let updatedMessages = [];
         initialMessages.forEach((message) => {
           updatedMessages = updateMessages(updatedMessages, message);

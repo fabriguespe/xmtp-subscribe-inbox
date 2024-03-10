@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Client } from "@xmtp/xmtp-js";
 import { ethers } from "ethers";
 import { ConversationContainer } from "./ConversationContainer";
+import { NotificationContentTypeCodec } from "../NotificationContentType";
 
 export function FloatingInbox({
   wallet,
@@ -363,6 +364,9 @@ export function FloatingInbox({
       ...clientOptions,
       privateKeyOverride: keys,
     });
+
+    xmtp.registerCodec(new NotificationContentTypeCodec());
+
     setClient(xmtp);
     setIsOnNetwork(!!xmtp.address);
     if (isConsent) {

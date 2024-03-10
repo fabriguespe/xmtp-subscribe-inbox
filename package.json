@@ -6,8 +6,10 @@
     "@xmtp/xmtp-js": "^11.4.1",
     "axios": "^1.5.0",
     "buffer": "^6.0.3",
+    "ethers": "5.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "styled-components": "^6.0.8"
   },

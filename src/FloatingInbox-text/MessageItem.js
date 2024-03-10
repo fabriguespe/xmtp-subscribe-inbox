@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  NotificationContentType,
+  NotificationContentTypeCodec,
+} from "../NotificationContentType";
 
 export const MessageItem = ({ message, senderAddress, client }) => {
   const renderFooter = (timestamp) => {
@@ -15,13 +19,17 @@ export const MessageItem = ({ message, senderAddress, client }) => {
 
   const renderMessage = (message) => {
     const codec = client.codecFor(message.contentType);
-    console.log("codec", codec);
     let content = message.content;
+
     if (!codec) {
       /*Not supported content type*/
       if (message?.contentFallback !== undefined)
         content = message?.contentFallback;
       else return;
+    }
+    if (message.contentType.sameAs(NotificationContentType)) {
+      console.log(message.content);
+      content = message.content?.body;
     }
     return (
       <div style={styles.messageContent}>
