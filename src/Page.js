@@ -121,11 +121,10 @@ const InboxPage = ({ isPWA = false }) => {
             </button>
           )}
           <h1>Subscribe Inbox</h1>
-          <span>
+          <span style={{ marginBottom: "12px" }}>
             Explore, manage and receive notifications from your favorite dapps
           </span>
-
-          <section className="App-section">
+          <section className="App-section" style={{ marginTop: "12px" }}>
             <button
               className="home-button"
               style={styles.ButtonStyledStyle}
@@ -137,6 +136,22 @@ const InboxPage = ({ isPWA = false }) => {
               style={{ ...styles.ButtonStyledStyle, marginLeft: 10 }}
               onClick={() => window.FloatingInbox.close()}>
               Close
+            </button>
+          </section>
+
+          <h1>Sending notifications</h1>
+          <section className="App-section" style={{ marginTop: "12px" }}>
+            <button
+              className="home-button"
+              style={styles.ButtonStyledStyle}
+              onClick={() => window.open("/send", "_blank")}>
+              Send notification
+            </button>
+            <button
+              className="home-button"
+              style={{ ...styles.ButtonStyledStyle, marginLeft: 10 }}
+              onClick={() => window.open("/request", "_blank")}>
+              Currency Request
             </button>
           </section>
         </div>

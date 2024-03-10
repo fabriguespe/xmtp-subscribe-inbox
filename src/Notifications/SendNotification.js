@@ -4,9 +4,10 @@ import { Client } from "@xmtp/xmtp-js";
 import {
   NotificationContentType,
   NotificationContentTypeCodec,
+  Notification,
 } from "./NotificationContentType";
 
-const SendNotificationPage = ({}) => {
+const SendNotification = ({}) => {
   const [subscriber, setSubscriber] = useState(
     "0x829510E9b6a3b6e8DCf906e846d3bFB6B9FB1D89",
   );
@@ -72,14 +73,14 @@ const SendNotificationPage = ({}) => {
       },
     );
 
-    const notification = {
+    const notification = new Notification(
       subject,
+      url,
       subjectUrl,
+      avatarLogoUrl,
       body,
       name,
-      avatarLogoUrl,
-      url,
-    };
+    );
 
     await conversation.send(notification, {
       contentType: NotificationContentType,
@@ -150,4 +151,4 @@ const SendNotificationPage = ({}) => {
   );
 };
 
-export default SendNotificationPage;
+export default SendNotification;

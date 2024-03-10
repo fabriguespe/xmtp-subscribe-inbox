@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NotificationContentType } from "./NotificationContentType";
+import { CurrencyRequestContentType } from "../CurrencyRequest/CurrencyRequestContentType";
 import { ReactComponent as ReplySVG } from "./Reply.svg";
+
 export const NotificationsContainer = ({ client, setSelectedConversation }) => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);

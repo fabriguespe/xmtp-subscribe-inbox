@@ -1,5 +1,7 @@
 import React from "react";
 import { NotificationContentType } from "../Notifications/NotificationContentType";
+import { CurrencyRequestContentType } from "../CurrencyRequest/CurrencyRequestContentType";
+import { PayOrRequestCurrencyPreviewCard } from "../CurrencyRequest/PreviewRequest";
 
 export const MessageItem = ({ message, senderAddress, client }) => {
   const renderFooter = (timestamp) => {
@@ -26,6 +28,9 @@ export const MessageItem = ({ message, senderAddress, client }) => {
     }
     if (message.contentType.sameAs(NotificationContentType)) {
       content = message.content?.body;
+    }
+    if (message.contentType.sameAs(CurrencyRequestContentType)) {
+      return <PayOrRequestCurrencyPreviewCard message={message} />;
     }
     return (
       <div style={styles.messageContent}>

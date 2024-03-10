@@ -3,6 +3,7 @@ import { Client } from "@xmtp/xmtp-js";
 import { ethers } from "ethers";
 import { ConversationContainer } from "./ConversationContainer";
 import { NotificationContentTypeCodec } from "../Notifications/NotificationContentType";
+import { CurrencyRequestContentTypeCodec } from "../CurrencyRequest/CurrencyRequestContentType";
 import { SubscriptionsContainer } from "../Notifications/SubscriptionsContainer";
 import { NotificationsContainer } from "../Notifications/NotificationsContainer";
 import { ExploreContainer } from "../Notifications/ExploreContainer";
@@ -336,6 +337,7 @@ export function FloatingInbox({
     });
 
     xmtp.registerCodec(new NotificationContentTypeCodec());
+    xmtp.registerCodec(new CurrencyRequestContentTypeCodec());
 
     setClient(xmtp);
     setIsOnNetwork(!!xmtp.address);

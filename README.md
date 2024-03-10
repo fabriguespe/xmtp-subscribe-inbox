@@ -100,7 +100,7 @@ if (message.contentType.sameAs(NotificationContentType)) {
 
 ## Metadata
 
-Metadata within SendNotificationPage.js is crucial for defining the context and appearance of notifications sent via the XMTP network.
+Metadata within SendNotification.js is crucial for defining the context and appearance of notifications sent via the XMTP network.
 Here's a breakdown of the metadata fields and their significance:
 
 - `type`: Specifies the nature of the notification, helping the receiving client understand how to process it.
