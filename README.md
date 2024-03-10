@@ -143,7 +143,6 @@ Please refer to the XMTP documentation for comprehensive information regarding t
 
 - [Broadcast Tutorial](/docs/tutorials/portable-consent/broadcast)
 - [Subscribe Tutorial](/docs/tutorials/portable-consent/subscribe)
-- Building a request inbox in [JavaScript](/docs/tutorials/portable-consent/request-inbox) or [React Rative](/docs/tutorials/portable-consent/request-inbox-rn)
 
 **Resources**:
 
