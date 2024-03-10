@@ -11,10 +11,11 @@ export const NotificationContentType = new ContentTypeId({
 
 // Define the Notification class
 export class Notification {
-  constructor(subject, url, avatarLogoUrl, body, name) {
+  constructor(subject, url, subjectUrl, avatarLogoUrl, body, name) {
     this.subject = subject;
     this.url = url;
     this.avatarLogoUrl = avatarLogoUrl;
+    this.subjectUrl = subjectUrl;
     this.body = body;
     this.name = name;
   }
@@ -27,21 +28,29 @@ export class NotificationContentTypeCodec {
   }
 
   encode(notification) {
-    const { subject, url, avatarLogoUrl, body, name } = notification;
+    const { subject, subjectUrl, url, avatarLogoUrl, body, name } =
+      notification;
     return {
       type: NotificationContentType,
       parameters: {},
       content: new TextEncoder().encode(
-        JSON.stringify({ subject, url, avatarLogoUrl, body, name }),
+        JSON.stringify({ subject, subjectUrl, url, avatarLogoUrl, body, name }),
       ),
     };
   }
 
   decode(encodedContent) {
     const decodedContent = new TextDecoder().decode(encodedContent.content);
-    const { subject, url, avatarLogoUrl, body, name } =
+    const { subject, url, subjectUrl, avatarLogoUrl, body, name } =
       JSON.parse(decodedContent);
-    return new Notification(subject, url, avatarLogoUrl, body, name);
+    return new Notification(
+      subject,
+      url,
+      subjectUrl,
+      avatarLogoUrl,
+      body,
+      name,
+    );
   }
 
   fallback(notification) {

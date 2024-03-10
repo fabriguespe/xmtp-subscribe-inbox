@@ -121,7 +121,6 @@ export const MessageContainer = ({
   const startMessageStream = async () => {
     let stream = await conversation.streamMessages();
     for await (const message of stream) {
-      console.log(message.senderAddress, message.content);
       setMessages((prevMessages) => {
         return updateMessages(prevMessages, message);
       });
@@ -148,7 +147,6 @@ export const MessageContainer = ({
     if (conversation && conversation.peerAddress) {
       await conversation.send(newMessage);
     } else if (conversation) {
-      console.log("entra");
       const conv = await client.conversations.newConversation(searchTerm);
       await conv.send(newMessage);
       selectConversation(conv);

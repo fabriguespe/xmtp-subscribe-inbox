@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NotificationContentType } from "./NotificationContentType";
-
-export const NotificationsContainer = ({ client }) => {
+import { ReactComponent as ReplySVG } from "./Reply.svg";
+export const NotificationsContainer = ({ client, setSelectedConversation }) => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +35,10 @@ export const NotificationsContainer = ({ client }) => {
       padding: "5px 10px",
       cursor: "pointer",
     },
-
+    username: {
+      textDecoration: "none",
+      color: "inherit",
+    },
     notificationTitle: {
       fontSize: "14px",
       fontWeight: "bold",
@@ -75,6 +78,8 @@ export const NotificationsContainer = ({ client }) => {
               .map((message) => ({
                 content: message.content,
                 sent: message.sent,
+                senderAddress: message.senderAddress,
+                conversation: message.conversation,
               })),
           );
         }),
@@ -89,6 +94,8 @@ export const NotificationsContainer = ({ client }) => {
           const newNotification = {
             content: message.content,
             sent: message.sent,
+            senderAddress: message.senderAddress,
+            conversation: message.conversation,
           };
           if (isMounted) {
             setNotifications((prevNotifications) => {
@@ -136,15 +143,27 @@ export const NotificationsContainer = ({ client }) => {
             <a
               target="_blank"
               rel="noreferrer"
-              href={notification.content.url}
+              href={notification.content.subjectUrl}
               style={styles.notificationTitle}>
               {notification.content.subject}
             </a>
             <p style={styles.notificationTime}>
               {`${new Date(notification.sent).getHours()}:${String(
                 new Date(notification.sent).getMinutes(),
-              ).padStart(2, "0")}`}{" "}
-              ago by <b>{notification.content.name}</b>
+              ).padStart(2, "0")}`}
+              ago by{" "}
+              <a
+                href={notification.content.url}
+                target="_blank"
+                style={styles.username}
+                rel="noreferrer">
+                <b>{notification.content.name}</b>
+              </a>
+              <ReplySVG
+                onClick={() =>
+                  setSelectedConversation(notification.conversation)
+                }
+              />
             </p>
           </div>
         </div>

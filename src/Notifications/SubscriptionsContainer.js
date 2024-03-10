@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export const SubscriptionsContainer = ({ client }) => {
+  const [loading, setLoading] = useState(false);
   const [subscriptions, setSubscriptions] = useState([]);
 
   const styles = {
@@ -66,15 +67,16 @@ export const SubscriptionsContainer = ({ client }) => {
 
   useEffect(() => {
     const fetchConversations = async () => {
+      setLoading(true);
       try {
         const allConversations = await client.conversations.list();
-        console.log(allConversations[0].context);
         const filteredConversations = allConversations.filter(
           (conversation) =>
             conversation?.context?.conversationId === "notification_v1",
         );
-        console.log(filteredConversations);
         setSubscriptions(filteredConversations);
+
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch conversations:", error);
       }
@@ -84,6 +86,14 @@ export const SubscriptionsContainer = ({ client }) => {
       fetchConversations();
     }
   }, [client]);
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", fontSize: "small" }}>
+        Loading subscriptions...
+      </div>
+    );
+  }
 
   return (
     <div>

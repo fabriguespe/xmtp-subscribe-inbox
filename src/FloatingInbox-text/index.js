@@ -20,6 +20,7 @@ export function FloatingInbox({
   const [client, setClient] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [activeTab, setActiveTab] = useState("notifications");
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
@@ -43,6 +44,11 @@ export function FloatingInbox({
 
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [signer, setSigner] = useState();
+  const setSelectedReply = (address) => {
+    console.log("entra", address);
+    setSelectedConversation(address);
+    setActiveTab("conversations");
+  };
 
   const styles = {
     FloatingLogo: {
@@ -445,7 +451,10 @@ export function FloatingInbox({
                 </div>
                 <div style={styles.widgetContent}>
                   {activeTab === "notifications" && (
-                    <NotificationsContainer client={client} />
+                    <NotificationsContainer
+                      client={client}
+                      setSelectedConversation={setSelectedReply}
+                    />
                   )}
                   {activeTab === "subscriptions" && (
                     <SubscriptionsContainer client={client} />

@@ -10,17 +10,18 @@ const SendNotificationPage = ({}) => {
   const [recipient, setRecipient] = useState(
     "0x829510E9b6a3b6e8DCf906e846d3bFB6B9FB1D89",
   );
-  const [subject, setSubject] = useState("New DAO Proposal from ENS");
-  const [url, setUrl] = useState(
-    "https://xmtp.org/img/builtWithXmtp/snapshot.jpg",
-  );
-  const [avatarLogoUrl, setAvatarLogoUrl] = useState(
-    "https://xmtp.org/img/builtWithXmtp/snapshot.jpg",
+  const [subject, setSubject] = useState("Your domain is about to expire");
+  const [subjectUrl, setSubjectUrl] = useState(
+    "https://app.ens.domains/thegeneralstore.eth",
   );
   const [body, setBody] = useState(
     "A new proposal has been submitted. Click here to vote.",
   );
   const [name, setName] = useState("ENS");
+  const [avatarLogoUrl, setAvatarLogoUrl] = useState(
+    "https://ens.domains/static/favicon-6305d6ce89910df001b94e8a31eb08f5.ico",
+  );
+  const [url, setUrl] = useState("https://ens.domains");
 
   const styles = {
     container: {
@@ -70,10 +71,11 @@ const SendNotificationPage = ({}) => {
 
     const notification = {
       subject,
-      url,
-      avatarLogoUrl,
+      subjectUrl,
       body,
       name,
+      avatarLogoUrl,
+      url,
     };
 
     await conversation.send(notification, {
@@ -86,6 +88,7 @@ const SendNotificationPage = ({}) => {
   return (
     <div style={styles.container}>
       <h2>Send Notification</h2>
+      <h3>Recipient</h3>
       <input
         style={styles.formField}
         type="text"
@@ -93,6 +96,7 @@ const SendNotificationPage = ({}) => {
         value={recipient}
         onChange={(e) => setRecipient(e.target.value)}
       />
+      <h3>Notification</h3>
       <input
         style={styles.formField}
         type="text"
@@ -104,15 +108,8 @@ const SendNotificationPage = ({}) => {
         style={styles.formField}
         type="text"
         placeholder="URL"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-      />
-      <input
-        style={styles.formField}
-        type="text"
-        placeholder="Avatar Logo URL"
-        value={avatarLogoUrl}
-        onChange={(e) => setAvatarLogoUrl(e.target.value)}
+        value={subjectUrl}
+        onChange={(e) => setSubjectUrl(e.target.value)}
       />
       <textarea
         style={styles.textArea}
@@ -120,12 +117,28 @@ const SendNotificationPage = ({}) => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
+      <h3>Sender</h3>
       <input
         style={styles.formField}
         type="text"
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        style={styles.formField}
+        type="text"
+        placeholder="URL"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
+
+      <input
+        style={styles.formField}
+        type="text"
+        placeholder="Avatar Logo URL"
+        value={avatarLogoUrl}
+        onChange={(e) => setAvatarLogoUrl(e.target.value)}
       />
       <button style={styles.button} onClick={sendNotification}>
         Send

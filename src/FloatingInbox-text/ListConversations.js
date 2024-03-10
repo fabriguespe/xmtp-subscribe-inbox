@@ -71,9 +71,6 @@ export const ListConversations = ({
       setLoading(false);
       stream = await client.conversations.stream();
       for await (const conversation of stream) {
-        console.log(
-          `New conversation started with ${conversation.peerAddress}`,
-        );
         if (isMounted) {
           setConversations((prevConversations) => {
             const newConversations = [...prevConversations, conversation];
