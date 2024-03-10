@@ -4,21 +4,9 @@
 
 This guide will walk you through the creation of a consent management system. This system will allow users to control their consent preferences for your messages or notifications. By leveraging XMTP, this tutorial offers tools to build a consent management system that respects user preferences and protects their privacy.
 
-## Considerations
-
-Before diving into the code let's consider important aspects while integrating consent features. For example, before making an allow or block action you should synchronize the updated consent list in order to prevent overwriting network consent from another app. For more details head to these sections of our docs:
-
-- [Understand user consent preferences](https://xmtp.org/docs/build/user-consent#understand-user-consent-preferences): This section provides a comprehensive understanding of how user consent preferences are set, including but not limited to, direct actions within the app, settings adjustments, and responses to prompts.
-- [Use consent preferences to respect user intent](https://xmtp.org/docs/build/user-consent#use-consent-preferences-to-respect-user-intent): Your app should aim to handle consent preferences appropriately because they are an expression of user intent.
-- [Synchronize user consent preferences](https://xmtp.org/docs/build/user-consent#synchronize-user-consent-preferences):All apps that use the user consent feature must adhere to the logic described in this section to keep the consent list on the network synchronized with local app user consent preferences, and vice versa.
-
 ## Notifications
 
-Each notification is sent via a Notification Content Type.
-
-### Notification Content Type
-
-The `Notification` class requires the following props for initialization:
+Each notification is sent via a Notification Content Type. The **Notification Content Type** class requires the following props for initialization:
 
 - `subject`: The subject or title of the notification.
 - `url`: The main URL associated with the notification.
@@ -130,10 +118,6 @@ const conversation = await client.conversations.newConversation(recipient, {
 ```
 
 This metadata enriches the notification, making it more informative and visually appealing to the recipient.
-
-## Universal allow block
-
-Please refer to the XMTP documentation for comprehensive information regarding the implementation.
 
 ### Universal Allow/Block Prefs
 
