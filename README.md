@@ -131,23 +131,25 @@ const conversation = await client.conversations.newConversation(recipient, {
 
 This metadata enriches the notification, making it more informative and visually appealing to the recipient.
 
-## Tutorial
+## Universal allow block
 
 Please refer to the XMTP documentation for comprehensive information regarding the implementation.
 
-- [Import libraries](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#import-libraries)
+### Universal Allow/Block Prefs
 
-- [Connect the wallet](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#connect-the-wallet)
+[XIP-42](https://community.xmtp.org/t/xip-42-universal-allow-and-block-preferences/544) establishes `allow` and `block` permission preferences, enabling users to explicitly specify which contacts should be able to reach them and which should be blocked across all inbox apps.
 
-- [Get consent List](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#get-consent-list)
+**Tutorials**:
 
-- [Render consent table](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#render-consent-table)
+- [Broadcast Tutorial](/docs/tutorials/portable-consent/broadcast)
+- [Subscribe Tutorial](/docs/tutorials/portable-consent/subscribe)
+- Building a request inbox in [JavaScript](/docs/tutorials/portable-consent/request-inbox) or [React Rative](/docs/tutorials/portable-consent/request-inbox-rn)
 
-- [Handle consent change](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#handle-consent-change)
+**Resources**:
 
-- [Download the consent list as a CSV file](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#download-the-consent-list-as-a-csv-file)
-
-- [Render the Component](https://junk-range-possible-git-management-xmtp-labs.vercel.app/docs/tutorials/portable-consent/consent-mangement#render-the-component)
+- [Documentation](/docs/build/user-consent)
+- [Spam](/docs/build/spam)
+- [Warpcast Thread](https://warpcast.com/0xdesigner/0x52fa0e7d)
 
 ## Conclusion
 
