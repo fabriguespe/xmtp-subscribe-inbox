@@ -19,15 +19,22 @@ const SendNotification = ({}) => {
 
   const [subscriber, setSubscriber] = useState(
     "0x829510E9b6a3b6e8DCf906e846d3bFB6B9FB1D89",
-  );
-  const [subject, setSubject] = useState("Fabi has requested you 100 USDC");
-  const [subjectUrl, setSubjectUrl] = useState("");
-  const [body, setBody] = useState("Fabri has requested you money");
+  ); // Updated subject state to use template literals for dynamic values
+
+  const [subjectUrl, setSubjectUrl] = useState(""); // Updated subject state to use template literals for dynamic values
+
   const [name, setName] = useState("Fabri");
   const [avatarLogoUrl, setAvatarLogoUrl] = useState(
     "https://pbs.twimg.com/profile_images/1714046879304916992/shc67g3Z_400x400.jpg",
   );
   const [url, setUrl] = useState("https://twitter.com/fabriguespe/photo");
+
+  const [subject, setSubject] = useState(
+    `${name} has requested you ${amount} in ${currency}`,
+  );
+  const [body, setBody] = useState(
+    `${name} has requested you ${amount} in ${currency}`,
+  );
 
   const styles = {
     container: {
@@ -124,22 +131,9 @@ const SendNotification = ({}) => {
       <input
         style={styles.formField}
         type="text"
-        placeholder="Subject"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-      />
-      <input
-        style={styles.formField}
-        type="text"
-        placeholder="URL"
+        placeholder="Payment URL"
         value={subjectUrl}
         onChange={(e) => setSubjectUrl(e.target.value)}
-      />
-      <textarea
-        style={styles.textArea}
-        placeholder="Body"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
       />
       <h3>Request currency</h3>
       <input
