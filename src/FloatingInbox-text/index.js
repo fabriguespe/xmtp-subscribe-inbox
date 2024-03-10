@@ -5,6 +5,7 @@ import { ConversationContainer } from "./ConversationContainer";
 import { NotificationContentTypeCodec } from "../Notifications/NotificationContentType";
 import { SubscriptionsContainer } from "../Notifications/SubscriptionsContainer";
 import { NotificationsContainer } from "../Notifications/NotificationsContainer";
+import { ExploreContainer } from "../Notifications/ExploreContainer";
 
 export function FloatingInbox({
   wallet,
@@ -450,73 +451,7 @@ export function FloatingInbox({
                     <SubscriptionsContainer client={client} />
                   )}
                   {activeTab === "explore" && (
-                    <>
-                      <div style={styles.subscriptionContainer}>
-                        <img
-                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAP1BMVEVHcEyKNtmRMtOHONuKNtmVMtGSMdKLNNeONNaEOd1+EtaZWd6BI9h+PeLg0PX////38/2ncuLGp+yRRtp+PeJQ5l+/AAAADnRSTlMAL3WVvAj//9z/////aK5o48AAAAEFSURBVHgBdNKBqoUgDIDhUmvNlvOo7/+sd9MzOxH3BwL4GJPRcrc6H4J36/Jq8/sIAPz2NGc0cr927IaDMbzNCAGP/+aUbdaZdYoniUmX2makg3Qmzp/YVdH/GBTmzJwqYkMvaCYaBUr8yFe1yV2MCCgyEyHGxKdYW+05VJMMcdZ1JNiky1YWlqoiTPRLUKoiBZIiIWF+4MkZ+s58JtQXt4F+YCIAEKwsFfqie2IsnHCYPGj9YgQg4EwSttE6jlBZj6bLVAzH+WCviccyRDTz/fAg6dFSVbsHNQed6VRStef0AmgIXczC/BWmTT2WWTB8zWmX0hy0fTN/k1/erZeX/saLlB0A6s8aTMH9zwwAAAAASUVORK5CYII="
-                          style={styles.subscriptionAvatar}
-                          alt="Snapshot Avatar"
-                        />
-                        <div style={styles.subscriptionText}>
-                          <p style={styles.username}>Polygon</p>
-                          <p style={styles.description}>
-                            Subscribe to Web3 Developers community.
-                          </p>
-                        </div>
-                        <button style={styles.subscriptionButton}>
-                          Subscribe
-                        </button>
-                      </div>
-                      <div style={styles.subscriptionContainer}>
-                        <img
-                          src="https://xmtp.org/img/builtWithXmtp/snapshot.jpg"
-                          style={styles.subscriptionAvatar}
-                          alt="Snapshot Avatar"
-                        />
-                        <div style={styles.subscriptionText}>
-                          <p style={styles.username}>Snapshot</p>
-                          <p style={styles.description}>
-                            Subscribe to Web3 Developers community.
-                          </p>
-                        </div>
-                        <button style={styles.subscriptionButton}>
-                          Subscribe
-                        </button>
-                      </div>
-                      <div style={styles.subscriptionContainer}>
-                        <img
-                          src="https://xmtp.org/img/logo-paragraph.png"
-                          style={styles.subscriptionAvatar}
-                          alt="Snapshot Avatar"
-                        />
-                        <div style={styles.subscriptionText}>
-                          <p style={styles.username}>Paragraph</p>
-                          <p style={styles.description}>
-                            Subscribe to Web3 Developers community.
-                          </p>
-                        </div>
-                        <button style={styles.subscriptionButton}>
-                          Subscribe
-                        </button>
-                      </div>
-
-                      <div style={styles.subscriptionContainer}>
-                        <img
-                          src="https://opensea.io/static/images/logos/opensea-logo.svg"
-                          style={styles.subscriptionAvatar}
-                          alt="Snapshot Avatar"
-                        />
-                        <div style={styles.subscriptionText}>
-                          <p style={styles.username}>OpenSea</p>
-                          <p style={styles.description}>
-                            Subscribe to Web3 Developers community.
-                          </p>
-                        </div>
-                        <button style={styles.subscriptionButton}>
-                          Subscribe
-                        </button>
-                      </div>
-                    </>
+                    <ExploreContainer client={client} />
                   )}
                   {activeTab === "conversations" && (
                     <ConversationContainer
