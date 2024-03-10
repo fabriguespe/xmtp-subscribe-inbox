@@ -50,18 +50,21 @@ const SendNotificationPage = ({}) => {
 
   const sendNotification = async () => {
     const privateKey =
-      "0x8069f97da6262ede2eecc0948c428ed59c53aae98124f490d6c04aa2bd624040";
+      "0x1eb5d5ff8f3ec2aea57248eaf24d7d7527bd0997cebcedf32d96aa1ada7d871f";
+    //0xEA4D8abb6EAe16d2cE21b36E4049136313D5d283
     const wallet = new ethers.Wallet(privateKey);
     const client = await Client.create(wallet, { env: "production" });
     client.registerCodec(new NotificationContentTypeCodec());
 
     const conversation = await client.conversations.newConversation(recipient, {
-      conversationId: "notification",
+      conversationId: "notification_v1",
       metadata: {
         type: "notification",
-        name: "notibot",
+        version: "v1",
+        name: "Notibot",
         website: "https://xmtp.org",
-        avatar: "https://xmtp.org/img/favi.png",
+        description: "A bot that sends notifications to users.",
+        avatarLogoUrl: "https://xmtp.org/img/favi.png",
       },
     });
 

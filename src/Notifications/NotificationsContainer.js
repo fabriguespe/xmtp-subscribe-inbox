@@ -135,6 +135,7 @@ export const NotificationsContainer = ({ client }) => {
           <div style={styles.notificationText}>
             <a
               target="_blank"
+              rel="noreferrer"
               href={notification.content.url}
               style={styles.notificationTitle}>
               {notification.content.subject}

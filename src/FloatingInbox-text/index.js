@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Client } from "@xmtp/xmtp-js";
 import { ethers } from "ethers";
 import { ConversationContainer } from "./ConversationContainer";
-import {
-  NotificationContentTypeCodec,
-  NotificationContentType,
-} from "../Notifications/NotificationContentType";
+import { NotificationContentTypeCodec } from "../Notifications/NotificationContentType";
+import { SubscriptionsContainer } from "../Notifications/SubscriptionsContainer";
 import { NotificationsContainer } from "../Notifications/NotificationsContainer";
 
 export function FloatingInbox({
@@ -203,6 +201,15 @@ export function FloatingInbox({
       marginTop: "0px",
       fontSize: "12px",
       color: "#666", // A lighter color for the description
+    },
+
+    notificationAvatar: {
+      borderRadius: "50%",
+      width: "50px", // Adjusted width to match notificationAvatar
+      height: "50px", // Adjusted height to maintain aspect ratio
+      objectFit: "cover",
+      display: "block",
+      overflow: "hidden",
     },
   };
 
@@ -440,24 +447,7 @@ export function FloatingInbox({
                     <NotificationsContainer client={client} />
                   )}
                   {activeTab === "subscriptions" && (
-                    <>
-                      <div style={styles.subscriptionContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.subscriptionText}>
-                          <p style={styles.username}>@web3devs</p>
-                          <p style={styles.description}>
-                            Subscribe to Web3 Developers community.
-                          </p>
-                        </div>
-                        <button style={styles.subscriptionButton}>
-                          Subscribe
-                        </button>
-                      </div>
-                    </>
+                    <SubscriptionsContainer client={client} />
                   )}
                   {activeTab === "explore" && (
                     <>
