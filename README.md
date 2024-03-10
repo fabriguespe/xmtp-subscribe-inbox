@@ -126,7 +126,7 @@ const conversation = await client.conversations.newConversation(subscriber, {
 
 This metadata enriches the notification, making it more informative and visually appealing to the subscriber.
 
-### Universal Allow/Block Prefs
+## Universal Allow/Block Prefs
 
 [XIP-42](https://community.xmtp.org/t/xip-42-universal-allow-and-block-preferences/544) establishes `allow` and `block` permission preferences, enabling users to explicitly specify which contacts should be able to reach them and which should be blocked across all inbox apps.
 
@@ -137,6 +137,6 @@ This metadata enriches the notification, making it more informative and visually
 
 **Resources**:
 
-- [Documentation](/docs/build/user-consent)
+- [Allow/block](/docs/build/user-consent)
 - [Spam](/docs/build/spam)
 - [Warpcast Thread](https://warpcast.com/0xdesigner/0x52fa0e7d)
