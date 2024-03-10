@@ -7,6 +7,9 @@ export const NotificationsContainer = ({ client, setSelectedConversation }) => {
 
   const styles = {
     //Notis
+    notificationReply: {
+      pointer: "hand",
+    },
     notificationContainer: {
       display: "flex",
       alignItems: "center",
@@ -160,10 +163,21 @@ export const NotificationsContainer = ({ client, setSelectedConversation }) => {
                 <b>{notification.content.name}</b>
               </a>
               <ReplySVG
+                styles={styles.notificationReply}
                 onClick={() =>
                   setSelectedConversation(notification.conversation)
                 }
               />
+              <a
+                href={"https://converse.xyz/dm/" + notification.senderAddress}
+                target="_blank"
+                rel="noreferrer">
+                <img
+                  alt="Converse Icon"
+                  src="https://converse.xyz/favicon.ico"
+                  style={{ width: "10px", height: "10px", marginLeft: "5px" }}
+                />
+              </a>
             </p>
           </div>
         </div>
