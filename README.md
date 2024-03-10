@@ -2,7 +2,14 @@
 
 ![xmtp](https://github.com/xmtp/xmtp-quickstart-reactjs/assets/1447073/3f2979ec-4d13-4c3d-bf20-deab3b2ffaa1)
 
-This guide will walk you through the creation of a consent management system. This system will allow users to control their consent preferences for your messages or notifications. By leveraging XMTP, this tutorial offers tools to build a consent management system that respects user preferences and protects their privacy.
+## Tabs
+
+The demo consists of 4 tabs:
+
+- **Notifications**: Inbox that renders only messages with Notification Content Type.
+- **Subscriptions**: From the notification content types received, extracts the metadata and lists the senders.
+- **Explore**: Fix list of recommendations to subscribe on XMTP
+- **Messages**: Conventional XMTP inbox.
 
 ## Notifications
 
@@ -97,14 +104,14 @@ Here's a breakdown of the metadata fields and their significance:
 - `type`: Specifies the nature of the notification, helping the receiving client understand how to process it.
 - `version`: Indicates the version of the notification format, ensuring compatibility between different clients.
 - `name`: The sender's name, providing a human-readable identifier for the source of the notification.
-- `website`: A URL to the sender's website, offering recipients a way to learn more about the sender or the notification context.
+- `website`: A URL to the sender's website, offering subscriber a way to learn more about the sender or the notification context.
 - `description`: A brief description of the notification or the sender, adding context to the notification content.
 - `avatarLogoUrl`: A URL to an image representing the sender, enhancing the visual presentation of the notification.
 
 These metadata fields are set when creating a new conversation with the XMTP client, as shown in the snippet below:
 
 ```javascript
-const conversation = await client.conversations.newConversation(recipient, {
+const conversation = await client.conversations.newConversation(subscriber, {
   conversationId: "notification_v1",
   metadata: {
     type: "notification",
@@ -117,7 +124,7 @@ const conversation = await client.conversations.newConversation(recipient, {
 });
 ```
 
-This metadata enriches the notification, making it more informative and visually appealing to the recipient.
+This metadata enriches the notification, making it more informative and visually appealing to the subscriber.
 
 ### Universal Allow/Block Prefs
 

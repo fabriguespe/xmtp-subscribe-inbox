@@ -7,7 +7,7 @@ import {
 } from "./NotificationContentType";
 
 const SendNotificationPage = ({}) => {
-  const [recipient, setRecipient] = useState(
+  const [subscriber, setSubscriber] = useState(
     "0x829510E9b6a3b6e8DCf906e846d3bFB6B9FB1D89",
   );
   const [subject, setSubject] = useState("Your domain is about to expire");
@@ -57,17 +57,20 @@ const SendNotificationPage = ({}) => {
     const client = await Client.create(wallet, { env: "production" });
     client.registerCodec(new NotificationContentTypeCodec());
 
-    const conversation = await client.conversations.newConversation(recipient, {
-      conversationId: "notification_v1",
-      metadata: {
-        type: "notification",
-        version: "v1",
-        name: "Notibot",
-        website: "https://xmtp.org",
-        description: "A bot that sends notifications to users.",
-        avatarLogoUrl: "https://xmtp.org/img/favi.png",
+    const conversation = await client.conversations.newConversation(
+      subscriber,
+      {
+        conversationId: "notification_v1",
+        metadata: {
+          type: "notification",
+          version: "v1",
+          name: "Notibot",
+          website: "https://xmtp.org",
+          description: "A bot that sends notifications to users.",
+          avatarLogoUrl: "https://xmtp.org/img/favi.png",
+        },
       },
-    });
+    );
 
     const notification = {
       subject,
@@ -88,13 +91,13 @@ const SendNotificationPage = ({}) => {
   return (
     <div style={styles.container}>
       <h2>Send Notification</h2>
-      <h3>Recipient</h3>
+      <h3>Subscriber</h3>
       <input
         style={styles.formField}
         type="text"
-        placeholder="Recipient Address"
-        value={recipient}
-        onChange={(e) => setRecipient(e.target.value)}
+        placeholder="Subscriber address"
+        value={subscriber}
+        onChange={(e) => setSubscriber(e.target.value)}
       />
       <h3>Notification</h3>
       <input
