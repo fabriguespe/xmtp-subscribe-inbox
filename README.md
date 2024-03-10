@@ -133,7 +133,3 @@ This metadata enriches the notification, making it more informative and visually
 - [Documentation](/docs/build/user-consent)
 - [Spam](/docs/build/spam)
 - [Warpcast Thread](https://warpcast.com/0xdesigner/0x52fa0e7d)
-
-## Conclusion
-
-Consent has really evolved through the years. It started with email, then email marketing, and was the wild west until laws like GPDR stepped in. This is new chapter in the history of consent in a new era for privacy, portability, and ownership.
