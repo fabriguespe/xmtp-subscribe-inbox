@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { Client } from "@xmtp/xmtp-js";
 import {
@@ -6,10 +6,9 @@ import {
   NotificationContentTypeCodec,
 } from "./NotificationContentType";
 
-const SendNotificationPage = ({ isPWA = false }) => {
-  const [signer, setSigner] = useState(null);
+const SendNotificationPage = ({}) => {
   const [recipient, setRecipient] = useState(
-    "0x0AD3A479B31072bc14bDE6AaD601e4cbF13e78a8",
+    "0x829510E9b6a3b6e8DCf906e846d3bFB6B9FB1D89",
   );
   const [subject, setSubject] = useState("New DAO Proposal from ENS");
   const [url, setUrl] = useState(
@@ -52,17 +51,16 @@ const SendNotificationPage = ({ isPWA = false }) => {
   const sendNotification = async () => {
     const privateKey =
       "0x8069f97da6262ede2eecc0948c428ed59c53aae98124f490d6c04aa2bd624040";
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const wallet = new ethers.Wallet(privateKey, provider);
-    setSigner(wallet);
-
+    const wallet = new ethers.Wallet(privateKey);
     const client = await Client.create(wallet, { env: "production" });
     client.registerCodec(new NotificationContentTypeCodec());
+
     const conversation = await client.conversations.newConversation(recipient, {
+      conversationId: "notification",
       metadata: {
         type: "notification",
         name: "notibot",
-        webstie: "https://xmtp.org",
+        website: "https://xmtp.org",
         avatar: "https://xmtp.org/img/favi.png",
       },
     });
@@ -79,7 +77,7 @@ const SendNotificationPage = ({ isPWA = false }) => {
       contentType: NotificationContentType,
     });
 
-    console.log("Notification sent!");
+    alert("Notification sent!");
   };
 
   return (

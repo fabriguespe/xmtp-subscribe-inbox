@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./polyfills";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SendNotificationPage from "./SendNotificationPage";
+import SendNotificationPage from "./Notifications/SendNotificationPage";
 import InboxPage from "./Page";
 
 import "./index.css";

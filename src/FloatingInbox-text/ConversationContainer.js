@@ -183,7 +183,6 @@ export const ConversationContainer = ({
               searchTerm={searchTerm}
               selectConversation={setSelectedConversation}
               onConversationFound={(state) => {
-                console.log("onConversationFound", state);
                 setConversationFound(state);
                 if (state === true) setCreateNew(false);
               }}
@@ -195,7 +194,6 @@ export const ConversationContainer = ({
               searchTerm={searchTerm}
               selectConversation={setSelectedConversation}
               onConversationFound={(state) => {
-                console.log("onConversationFound", state);
                 setConversationFound(state);
                 if (state === true) setCreateNew(false);
               }}
@@ -227,18 +225,4 @@ export const ConversationContainer = ({
       )}
     </div>
   );
-};
-
-const getRelativeTimeLabel = (dateString) => {
-  const diff = new Date() - new Date(dateString);
-  const diffMinutes = Math.floor(diff / 1000 / 60);
-  const diffHours = Math.floor(diff / 1000 / 60 / 60);
-  const diffDays = Math.floor(diff / 1000 / 60 / 60 / 24);
-  const diffWeeks = Math.floor(diff / 1000 / 60 / 60 / 24 / 7);
-
-  if (diffMinutes < 60)
-    return `${diffMinutes} minute${diffMinutes > 1 ? "s" : ""} ago`;
-  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
-  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
-  return `${diffWeeks} week${diffWeeks > 1 ? "s" : ""} ago`;
 };

@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Client } from "@xmtp/xmtp-js";
 import { ethers } from "ethers";
 import { ConversationContainer } from "./ConversationContainer";
-import { NotificationContentTypeCodec } from "../NotificationContentType";
+import {
+  NotificationContentTypeCodec,
+  NotificationContentType,
+} from "../Notifications/NotificationContentType";
+import { NotificationsContainer } from "../Notifications/NotificationsContainer";
 
 export function FloatingInbox({
   wallet,
@@ -199,54 +203,6 @@ export function FloatingInbox({
       marginTop: "0px",
       fontSize: "12px",
       color: "#666", // A lighter color for the description
-    },
-
-    //Notis
-    notificationContainer: {
-      display: "flex",
-      alignItems: "center",
-      padding: "10px",
-      borderBottom: "1px solid #ccc",
-    },
-    notificationAvatar: {
-      borderRadius: "50%",
-      width: "50px", // Adjusted width to match subscriptionAvatar
-      height: "50px", // Adjusted height to maintain aspect ratio
-      objectFit: "cover",
-      display: "block",
-      overflow: "hidden",
-    },
-    notificationText: {
-      marginLeft: "10px",
-      flexGrow: 1,
-      maxWidth: "calc(100% - 60px)", // Adjusted to ensure text doesn't push other elements too wide, considering avatar width and some padding
-    },
-    notificationButton: {
-      // If there's a button in the notification, style it similarly to subscriptionButton
-      backgroundColor: "black",
-      color: "white",
-      border: "none",
-      borderRadius: "5px",
-      padding: "5px 10px",
-      cursor: "pointer",
-    },
-
-    notificationTitle: {
-      fontSize: "14px",
-      fontWeight: "bold",
-      margin: "0px", // Add some space between the title and the time
-    },
-    notificationTime: {
-      fontSize: "12px",
-      color: "#666",
-    },
-    notificationUsername: {
-      backgroundColor: "black",
-      color: "white",
-      border: "none",
-      borderRadius: "5px",
-      padding: "5px 10px",
-      cursor: "pointer",
     },
   };
 
@@ -481,129 +437,7 @@ export function FloatingInbox({
                 </div>
                 <div style={styles.widgetContent}>
                   {activeTab === "notifications" && (
-                    <>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={styles.notificationTitle}>
-                            Vote on this DAO proposal
-                          </p>
-                          <p style={styles.notificationTime}>
-                            2 hours ago by <b>@snapshot.eth</b>
-                          </p>
-                        </div>
-                      </div>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={styles.notificationTitle}>
-                            Your bridge has completed
-                          </p>
-
-                          <p style={styles.notificationTime}>
-                            2 hours ago by <b>@polygon.eth</b>
-                          </p>
-                        </div>
-                      </div>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={{ fontSize: "14px", fontWeight: "bold" }}>
-                            Mint this exclusive NFT
-                          </p>
-                          <p style={styles.notificationTime}>
-                            1 hours ago by <b>@zora</b>
-                          </p>
-                        </div>
-                      </div>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={styles.notificationTitle}>
-                            Alice has requested you money
-                          </p>
-                          <p style={styles.notificationTime}>
-                            2 hours ago by <b>@alice.eth</b>
-                          </p>
-                        </div>
-                      </div>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={styles.notificationTitle}>
-                            Your ENS domain is expiring soon
-                          </p>
-                          <p style={styles.notificationTime}>
-                            Now <b>@ens</b>
-                          </p>
-                        </div>
-                      </div>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={styles.notificationTitle}>
-                            You received a $10 USD bid for your NFT
-                          </p>
-                          <p style={styles.notificationTime}>
-                            2 hours ago by <b>@opensea</b>
-                          </p>
-                        </div>
-                      </div>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={styles.notificationTitle}>
-                            A new blog post is available
-                          </p>
-                          <p style={styles.notificationTime}>
-                            2 hours ago by <b>@mirror</b>
-                          </p>
-                        </div>
-                      </div>
-                      <div style={styles.notificationContainer}>
-                        <img
-                          alt="Avatar"
-                          style={styles.notificationAvatar}
-                          src="/placeholder.svg"
-                        />
-                        <div style={styles.notificationText}>
-                          <p style={styles.notificationTitle}>
-                            Read the latest XMTP newsletter
-                          </p>
-                          <p style={styles.notificationTime}>
-                            2 hours ago by <b>@paragraph</b>
-                          </p>
-                        </div>
-                      </div>
-                    </>
+                    <NotificationsContainer client={client} />
                   )}
                   {activeTab === "subscriptions" && (
                     <>

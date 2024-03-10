@@ -62,7 +62,6 @@ export const ListConversations = ({
     const fetchAndStreamConversations = async () => {
       setLoading(true);
       const allConversations = await client.conversations.list();
-
       const sortedConversations = allConversations.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
       );

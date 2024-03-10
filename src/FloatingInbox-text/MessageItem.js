@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  NotificationContentType,
-  NotificationContentTypeCodec,
-} from "../NotificationContentType";
+import { NotificationContentType } from "../Notifications/NotificationContentType";
 
 export const MessageItem = ({ message, senderAddress, client }) => {
   const renderFooter = (timestamp) => {
@@ -28,7 +25,6 @@ export const MessageItem = ({ message, senderAddress, client }) => {
       else return;
     }
     if (message.contentType.sameAs(NotificationContentType)) {
-      console.log(message.content);
       content = message.content?.body;
     }
     return (
