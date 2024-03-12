@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import { Client } from "@xmtp/xmtp-js";
 
 export const SubscriptionsContainer = ({ client }) => {
   const [loading, setLoading] = useState(false);
@@ -88,6 +90,49 @@ export const SubscriptionsContainer = ({ client }) => {
     }
   }, [client]);
 
+  const connectWallet = async () => {
+    if (typeof window.ethereum !== "undefined") {
+      try {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        return provider.getSigner();
+      } catch (error) {
+        console.error("User rejected request", error);
+      }
+    } else {
+      console.error("Metamask not found");
+    }
+  };
+
+  // Define the handleClick function
+  const handleClick = async (senderAddress, state, index) => {
+    try {
+      // Set loading to true
+      setLoading(true);
+      // Get the subscriber
+      let wallet = await connectWallet();
+      let client = await Client.create(wallet, { env: "production" });
+
+      // Refresh the consent list to make sure your application is up-to-date with the
+      await client.contacts.refreshConsentList();
+
+      // If the state is unknown or blocked, allow the subscriber
+      if (state === "unknown" || state === "denied") {
+        state = "allowed";
+        await client.contacts.allow([senderAddress]);
+      } else if (state === "allowed") {
+        state = "denied";
+        await client.contacts.deny([senderAddress]);
+      }
+
+      console.log(index);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false); // Ensure loading is set to false in finally block
+    }
+  };
+
   if (loading) {
     return (
       <div style={{ textAlign: "center", fontSize: "small" }}>
@@ -117,7 +162,14 @@ export const SubscriptionsContainer = ({ client }) => {
               {subscription.context?.metadata?.description}
             </p>
           </div>
-          <button style={styles.subscriptionButton}>Subscribe</button>
+          <button
+            style={styles.subscriptionButton}
+            onClick={() =>
+              handleClick(subscription.peerAddress, subscription.status, index)
+            }
+            disabled={loading}>
+            {"allowed" === "allowed" ? "Unsubscribe" : "Subscribe"}
+          </button>
         </div>
       ))}
     </div>

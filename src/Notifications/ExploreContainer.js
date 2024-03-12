@@ -11,24 +11,28 @@ export const ExploreContainer = ({ client }) => {
       username: "Polygon",
       address: "0xEA4D8abb6EAe16d2cE21b36E4049136313D5d283",
       description: "Subscribe to Web3 Developers community.",
+      status: "unknown", // Initial status
     },
     {
       avatarLogoUrl: "https://xmtp.org/img/builtWithXmtp/snapshot.jpg",
       username: "Snapshot",
       address: "0xEA4D8abb6EAe16d2cE21b36E4049136313D5d283",
       description: "Subscribe to Web3 Developers community.",
+      status: "unknown", // Initial status
     },
     {
       avatarLogoUrl: "https://xmtp.org/img/logo-paragraph.png",
       username: "Paragraph",
       address: "0xEA4D8abb6EAe16d2cE21b36E4049136313D5d283",
       description: "Subscribe to Web3 Developers community.",
+      status: "unknown", // Initial status
     },
     {
       avatarLogoUrl: "https://opensea.io/static/images/logos/opensea-logo.svg",
       username: "OpenSea",
       address: "0xEA4D8abb6EAe16d2cE21b36E4049136313D5d283",
       description: "Subscribe to Web3 Developers community.",
+      status: "unknown", // Initial status
     },
   ]);
 
@@ -108,7 +112,7 @@ export const ExploreContainer = ({ client }) => {
   };
 
   // Define the handleClick function
-  const handleClick = async (senderAddress) => {
+  const handleClick = async (senderAddress, state, index) => {
     try {
       // Set loading to true
       setLoading(true);
@@ -119,9 +123,6 @@ export const ExploreContainer = ({ client }) => {
       // Refresh the consent list to make sure your application is up-to-date with the
       await client.contacts.refreshConsentList();
 
-      // Get the consent state of the subscriber
-      let state = client.contacts.consentState(senderAddress);
-
       // If the state is unknown or blocked, allow the subscriber
       if (state === "unknown" || state === "denied") {
         state = "allowed";
@@ -131,11 +132,17 @@ export const ExploreContainer = ({ client }) => {
         await client.contacts.deny([senderAddress]);
       }
 
-      // Set loading to false
-      setLoading(false);
+      // Use functional update to ensure we're working with the most current state
+      setExplore((currentExplore) =>
+        currentExplore.map((item, itemIndex) =>
+          itemIndex === index ? { ...item, status: state } : item,
+        ),
+      );
+      console.log(index);
     } catch (error) {
-      // Log the error
       console.log(error);
+    } finally {
+      setLoading(false); // Ensure loading is set to false in finally block
     }
   };
 
@@ -154,8 +161,9 @@ export const ExploreContainer = ({ client }) => {
           </div>
           <button
             style={styles.subscriptionButton}
-            onClick={() => handleClick(item.address)}>
-            Subscribe
+            onClick={() => handleClick(item.address, item.status, index)}
+            disabled={loading}>
+            {item.status === "allowed" ? "Unsubscribe" : "Subscribe"}
           </button>
         </div>
       ))}

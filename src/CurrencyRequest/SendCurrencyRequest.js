@@ -118,7 +118,7 @@ const SendNotification = ({}) => {
 
   return (
     <div style={styles.container}>
-      <h2>Send Notification</h2>
+      <h2>Request Money</h2>
       <h3>Subscriber</h3>
       <input
         style={styles.formField}
