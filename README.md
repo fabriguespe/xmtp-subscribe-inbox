@@ -1,4 +1,4 @@
-# Subscribe Inbox - Concept
+# Subscribe Inbox - POC
 
 This propotype shows the possibilities of building a notification focused inbox using concepts like subscribing and content types.
 
