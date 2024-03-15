@@ -1,6 +1,6 @@
 # Subscribe Inbox - POC
 
-This propotype shows the possibilities of building a notification focused inbox using concepts like subscribing and content types.
+This propotype shows the possibilities of building a notification focused inbox using features like subscribe, conversation metadata and content types.
 
 ## Tabs
 
