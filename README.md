@@ -114,8 +114,7 @@ These metadata fields are set when creating a new conversation with the XMTP cli
 
 ```javascript
 const conversation = await client.conversations.newConversation(subscriber, {
-  conversationId:
-    "notification_v1" /*may not be needed*, but is mandatory for now*/,
+  conversationId: "notification_v1" /*may not be needed*,  mandatory field*/,
   metadata: {
     type: "notification",
     version: "v1",
