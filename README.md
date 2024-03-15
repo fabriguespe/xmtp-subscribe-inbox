@@ -1,4 +1,4 @@
-# Subscribe Inbox with XMTP - Concept
+# Subscribe Inbox - Concept
 
 This propotype shows the possibilities of building a notification focused inbox using concepts like subscribing and content types.
 
