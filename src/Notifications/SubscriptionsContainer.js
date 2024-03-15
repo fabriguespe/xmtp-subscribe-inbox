@@ -107,8 +107,6 @@ export const SubscriptionsContainer = ({ client }) => {
   // Define the handleClick function
   const handleClick = async (senderAddress, state, index) => {
     try {
-      // Set loading to true
-      setLoading(true);
       // Get the subscriber
       let wallet = await connectWallet();
       let client = await Client.create(wallet, { env: "production" });
@@ -125,11 +123,14 @@ export const SubscriptionsContainer = ({ client }) => {
         await client.contacts.deny([senderAddress]);
       }
 
-      console.log(index);
+      // Use functional update to ensure we're working with the most current state
+      setSubscriptions((currentExplore) =>
+        currentExplore.map((item, itemIndex) =>
+          itemIndex === index ? { ...item, status: state } : item,
+        ),
+      );
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false); // Ensure loading is set to false in finally block
     }
   };
 
@@ -165,7 +166,11 @@ export const SubscriptionsContainer = ({ client }) => {
           <button
             style={styles.subscriptionButton}
             onClick={() =>
-              handleClick(subscription.peerAddress, subscription.status, index)
+              handleClick(
+                subscription.peerAddress,
+                subscription.consentState,
+                index,
+              )
             }
             disabled={loading}>
             {"allowed" === "allowed" ? "Unsubscribe" : "Subscribe"}
